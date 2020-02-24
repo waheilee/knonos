@@ -100,7 +100,7 @@
 
 
         <div class="demo-spinner demo-small-pitch">
-            <span class="demo-spinner-title">企业帮个环境消毒控菌（元/平米）</span>
+            <span class="demo-spinner-title">企业办公环境消毒控菌（元/平米）</span>
             <span class="demo-spinner-page">￥6元</span>
             <span class="m-spinner" id="J_Quantity">
                 <a href="javascript:;" class="J_Del"></a>
