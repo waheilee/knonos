@@ -12,7 +12,7 @@
 
 
     <link rel="stylesheet" href="{{asset('web/css/ydui.css')}}"/>
-    <link rel="stylesheet" href="{{asset('web/css/demo.css')}}"/>
+    {{--<link rel="stylesheet" href="{{asset('web/css/demo.css')}}"/>--}}
     <script src="{{asset('web/js/ydui.flexible.js')}}"></script>
     <style>
         *{
