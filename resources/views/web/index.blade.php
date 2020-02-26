@@ -7,7 +7,7 @@
     <meta content="yes" name="apple-mobile-web-app-capable"/>
     <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <meta content="telephone=no" name="format-detection"/>
-    {{--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--}}
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="_token" content="{{ csrf_token() }}" />
 
 
@@ -393,7 +393,7 @@
                 success: function (data) {
                     dialog.toast(data, 'success', 1500);
                     setTimeout(function(){
-                        window.location.reload();
+                        location.href = '{{url('success')}}';
                     },1500);
                 }
             })

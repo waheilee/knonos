@@ -17,3 +17,4 @@
 
 Route::get('/','Web\IndexController@index');
 Route::post('order','Web\IndexController@store');
+Route::get('success','Web\IndexController@success');

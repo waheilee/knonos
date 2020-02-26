@@ -27,4 +27,9 @@ class IndexController extends Controller
 
         dd($request->all());
     }
+
+    public function success()
+    {
+        return view('web.congratulation');
+    }
 }
