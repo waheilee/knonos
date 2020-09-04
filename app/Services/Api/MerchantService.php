@@ -57,10 +57,11 @@ class MerchantService
             if (!$base){
                 throw new ServiceException(ErrorMsgConstants::VALIDATION_DATA_ERROR,'上传的base64图片格式有误');
             }
-            $imageName = 'avatar/'.date('Y-m-d') . uniqid() . '.' . $image_extension[1]; //generating unique file name;
+            $imageName = 'photo/'.date('Y-m-d') . uniqid() . '.' . $image_extension[1]; //generating unique file name;
             $disk      = Storage::disk('oss');
             $path      = $disk->put($imageName,base64_decode($image));
-            return $disk->url($path);
+
+            return 'http://yandu2019.oss-cn-beijing.aliyuncs.com/'.$imageName;
     }
 
     /**
@@ -124,7 +125,8 @@ class MerchantService
      */
     public function searchPid($code)
     {
-        $pid = Merchant::whereCode($code)->first();
+        $upper = strtoupper($code);
+        $pid = Merchant::whereCode($upper)->first();
         if (empty($pid)){
             throw new ServiceException(ErrorMsgConstants::VALIDATION_DATA_ERROR,'查无此邀请码');
         }
