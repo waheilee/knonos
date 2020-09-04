@@ -5,6 +5,11 @@ namespace App\Constants;
 
 class BaseConstants
 {
+
+    const RETURN_SUCCESS = 10000;
+    const RETURN_ERROR = 20000;
+    const TOKEN_ERROR = 30000;
+
     // 未支付
     const ORDER_UN_PAY = 1;
     // 已经支付
