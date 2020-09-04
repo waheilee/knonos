@@ -29,30 +29,30 @@
         <div style="padding: 0 0.24rem; margin-bottom: 0.7rem">
             <hr style="border: 0.01rem dashed #cccccc;">
         </div>
-        <div class="m-celltitle">请选择城市【多选】</div>
-        <div class="m-cell">
-            <label class="cell-item">
-                <span class="cell-left">北京</span>
-                <label class="cell-right">
-                <input type="checkbox"  value="北京" name="checkbox[]">
-                <i class="cell-checkbox-icon"></i>
-            </label>
-            </label>
-                <label class="cell-item">
-                <span class="cell-left">上海</span>
-                    <label class="cell-right">
-                    <input type="checkbox" value="上海" name="checkbox[]">
-                    <i class="cell-checkbox-icon"></i>
-                    </label>
-                </label>
-            <label class="cell-item">
-                <span class="cell-left">苏州</span>
-                <label class="cell-right">
-                <input type="checkbox" value="上海" name="checkbox[]">
-                <i class="cell-checkbox-icon"></i>
-                </label>
-            </label>
-        </div>
+        {{--<div class="m-celltitle">请选择城市【多选】</div>--}}
+        {{--<div class="m-cell">--}}
+            {{--<label class="cell-item">--}}
+                {{--<span class="cell-left">北京</span>--}}
+                {{--<label class="cell-right">--}}
+                {{--<input type="checkbox"  value="北京" name="checkbox[]">--}}
+                {{--<i class="cell-checkbox-icon"></i>--}}
+            {{--</label>--}}
+            {{--</label>--}}
+                {{--<label class="cell-item">--}}
+                {{--<span class="cell-left">上海</span>--}}
+                    {{--<label class="cell-right">--}}
+                    {{--<input type="checkbox" value="上海" name="checkbox[]">--}}
+                    {{--<i class="cell-checkbox-icon"></i>--}}
+                    {{--</label>--}}
+                {{--</label>--}}
+            {{--<label class="cell-item">--}}
+                {{--<span class="cell-left">苏州</span>--}}
+                {{--<label class="cell-right">--}}
+                {{--<input type="checkbox" value="上海" name="checkbox[]">--}}
+                {{--<i class="cell-checkbox-icon"></i>--}}
+                {{--</label>--}}
+            {{--</label>--}}
+        {{--</div>--}}
 
         <div class="m-cell demo-small-pitch">
 
@@ -66,12 +66,12 @@
                 <div class="cell-left">电话：</div>
                 <div class="cell-right"><input type="text" class="cell-input" placeholder="请输入您的联系电话" autocomplete="off" name="phone"></div>
             </div>
-            {{--<div class="cell-item">--}}
-                {{--<div class="cell-left">所在地区：</div>--}}
-                {{--<div class="cell-right cell-arrow">--}}
-                    {{--<input type="text" class="cell-input" readonly="" id="J_Address" placeholder="请选择地址">--}}
-                {{--</div>--}}
-            {{--</div>--}}
+            <div class="cell-item">
+                <div class="cell-left">所在地区：</div>
+                <div class="cell-right cell-arrow">
+                    <input type="text" class="cell-input" readonly="" name="city" id="J_Address" placeholder="省、市、县">
+                </div>
+            </div>
             <div class="cell-item">
                 <div class="cell-right">
                     <input type="text" class="cell-input" placeholder="填写详细街道地址" autocomplete="off" name="address">
@@ -184,33 +184,23 @@
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script src="{{asset('web/js/ydui.js')}}"></script>
-
 <script>
-/**
-* 默认调用
-*/
-    !function () {
-        var $target = $('#J_Address');
+    var $address = $('#J_Address');
 
-        $target.citySelect();
+    $address.citySelect();
 
-        $target.on('click', function (event) {
-        event.stopPropagation();
-        $target.citySelect('open');
-        });
+    $address.on('click', function () {
+        $address.citySelect('open');
+    });
 
-        $target.on('done.ydui.cityselect', function (ret) {
+    $address.on('done.ydui.cityselect', function (ret) {
+        /* 省：ret.provance */
+        /* 市：ret.city */
+        /* 县：ret.area */
         $(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
-        });
-    }();
-    !function ($) {
-        $('#J_Btn').on('click', function () {
-        /* 使用：js模块以dialog为例 */
-        YDUI.dialog.alert('我有一个小毛驴我从来也不骑！');
-        });
-    }(jQuery);
-
+    });
 </script>
+
 <script>
     !function () {
         $('#J_Quantity').spinner({

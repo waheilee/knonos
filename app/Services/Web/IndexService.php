@@ -12,21 +12,20 @@ class IndexService
 
     public function create(Request $request)
     {
-        $city = $request->input('checkbox');//地区
-//        dd($city);
+        $city = $request->input('city');//地区
         $area = $request->input('area');//面积
         $name = $request->input('name');//姓名
         $phone = $request->input('phone');//电话
         $address = $request->input('address');//详细地址
         $product = $request->input('order');//订单详情
         $orderModel = new Order();
-        $orderModel->name = json_encode($city,JSON_UNESCAPED_UNICODE);
+//        $orderModel->name = json_encode($city,JSON_UNESCAPED_UNICODE);
         $orderModel->user_id = 1;
         $orderModel->total = 0;
         $orderModel->area = $area;
         $orderModel->consignee_name = $name;
         $orderModel->consignee_phone = $phone;
-        $orderModel->consignee_address = $address;
+        $orderModel->consignee_address = $city.$address;
         $orderModel->save();
         $this->product($product,$orderModel->id);
 

@@ -99,15 +99,15 @@ class OrderController extends Controller
 
             return OrderTransform::getInstance()->transStatus($status);
         });
-        $grid->column('type', '订单类型')->display(function ($type) {
-
-            return OrderTransform::getInstance()->transType($type);
-        });
+//        $grid->column('type', '订单类型')->display(function ($type) {
+//
+//            return OrderTransform::getInstance()->transType($type);
+//        });
         $grid->column('pay_time', '支付时间');
         $grid->column('consignee_name', '收货人姓名');
         $grid->column('consignee_phone', '收货人手机');
         $grid->column('consignee_address', '收货地址');
-        $grid->column('refund_reason', '退款理由');
+//        $grid->column('refund_reason', '退款理由');
         $grid->column('created_at', '创建时间');
 
         $grid->disableRowSelector();
