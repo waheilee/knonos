@@ -16,7 +16,9 @@ Route::middleware('cors')->group(function () {
 
     Route::post('merchant_info','Api\MerchantApi@addMerchant');//商家信息提交
     Route::post('upload','Api\MerchantApi@photo');//上传图片
-
+    Route::get('dashboard', function () {
+        return '正常访问';
+    });
 });
 
 
