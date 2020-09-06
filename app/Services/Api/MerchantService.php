@@ -50,6 +50,7 @@ class MerchantService
     public function setPhoto(Request $request)
     {
             $file = $request->file('photo'); // image base64 encoded
+            return $file;
 //            $base  = preg_match("/data:image\/(.*?);/",$image,$image_extension); // extract the image extension
 //            $image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
 //            $image = str_replace(' ', '+', $image);
