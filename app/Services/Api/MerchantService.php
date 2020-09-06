@@ -79,17 +79,15 @@ class MerchantService
                 return response()->json($result);
             }
 
-//            $image = $file->store('images');
-//            $filepath = Storage::url($image);
-            $imageName = 'photo/'.date('Y-m-d') . uniqid() . '.' . $filename[0]; //generating unique file name;
-            $disk      = Storage::disk('oss');
-            $path      = $disk->put($imageName,$file);
+            $image = $file->store('images');
+            $filepath = Storage::url($image);
+            dd($filepath);
             $result['status'] = 1;
             $result['msg'] = '上传成功!';
             $result['data'] = [
                 'filename' => explode('.', $filename)[0],
-                'img' => "http://yandu2019.oss-cn-beijing.aliyuncs.com/".$imageName,
-//                'img_url' => $filepath
+                'img' => "http://yandu2019.oss-cn-beijing.aliyuncs.com/".$image,
+                'img_url' => $filepath
             ];
         }
 
