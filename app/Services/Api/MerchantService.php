@@ -20,8 +20,6 @@ class MerchantService
      */
     public function add(Request $request)
     {
-        dd($request->all());
-
         $merchantModel = new Merchant();
         $merchantModel->property        = $request->input('property');
         $merchantModel->cp_name         = $request->input('cp_name');
@@ -40,7 +38,6 @@ class MerchantService
         $merchantModel->id_card_photo_b = $this->setPhoto($request->input('id_card_photo_b'));
         $merchantModel->code            = $this->getCode();// $request->input('code');
         $merchantModel->p_id            = $request->input('code')?$this->searchPid($request->input('code')):0;
-
         $merchantModel->save();
         return $merchantModel->code;
     }
