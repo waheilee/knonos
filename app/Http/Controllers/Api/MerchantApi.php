@@ -19,7 +19,7 @@ class MerchantApi extends Controller
 
     public function addMerchant(Request $request)
     {
-//        try{
+        try{
             $validatorRules = [
                 'property'        => 'required',
                 'cp_name'         => 'required',
@@ -49,8 +49,8 @@ class MerchantApi extends Controller
             $this->requestValidator($request, $validatorRules, $validatorMessages);
             $data = $this->merchantService->add($request);
             return $this->wrapSuccessReturn(compact('data'));
-//        }catch (\Exception $exception){
-//            return $this->wrapErrorReturn($exception);
-//        }
+        }catch (\Exception $exception){
+            return $this->wrapErrorReturn($exception);
+        }
     }
 }
