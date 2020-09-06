@@ -33,9 +33,9 @@ class MerchantService
         $merchantModel->bank            = $request->input('bank');
         $merchantModel->bank_number     = $request->input('bank_number');
         $merchantModel->category        = $request->input('category');
-        $merchantModel->business_photo  = $this->setPhoto($request->input('business_photo'));
-        $merchantModel->id_card_photo_a = $this->setPhoto($request->input('id_card_photo_a'));
-        $merchantModel->id_card_photo_b = $this->setPhoto($request->input('id_card_photo_b'));
+//        $merchantModel->business_photo  = $this->setPhoto($request->input('business_photo'));
+//        $merchantModel->id_card_photo_a = $this->setPhoto($request->input('id_card_photo_a'));
+//        $merchantModel->id_card_photo_b = $this->setPhoto($request->input('id_card_photo_b'));
         $merchantModel->code            = $this->getCode();// $request->input('code');
         $merchantModel->p_id            = $request->input('code')?$this->searchPid($request->input('code')):0;
         $merchantModel->save();
