@@ -20,7 +20,6 @@ class MerchantService
      */
     public function add(Request $request)
     {
-        dd($request->input('business_photo'));
         $merchantModel = new Merchant();
         $merchantModel->property        = $request->input('property');
         $merchantModel->cp_name         = $request->input('cp_name');
