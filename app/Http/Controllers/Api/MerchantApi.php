@@ -53,4 +53,14 @@ class MerchantApi extends Controller
             return $this->wrapErrorReturn($exception);
         }
     }
+
+    public function photo(Request $request)
+    {
+        try{
+            $data = $this->merchantService->setPhoto($request);
+            return $this->wrapSuccessReturn(compact('data'));
+        }catch (\Exception $exception){
+            return $this->wrapErrorReturn($exception);
+        }
+    }
 }
