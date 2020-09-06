@@ -33,9 +33,9 @@ class MerchantService
         $merchantModel->bank            = $request->input('bank');
         $merchantModel->bank_number     = $request->input('bank_number');
         $merchantModel->category        = $request->input('category');
-//        $merchantModel->business_photo  = $this->setPhoto($request->input('business_photo'));
-//        $merchantModel->id_card_photo_a = $this->setPhoto($request->input('id_card_photo_a'));
-//        $merchantModel->id_card_photo_b = $this->setPhoto($request->input('id_card_photo_b'));
+        $merchantModel->business_photo  = $request->input('business_photo');
+        $merchantModel->id_card_photo_a = $request->input('id_card_photo_a');
+        $merchantModel->id_card_photo_b = $request->input('id_card_photo_b');
         $merchantModel->code            = $this->getCode();// $request->input('code');
         $merchantModel->p_id            = $request->input('code')?$this->searchPid($request->input('code')):0;
         $merchantModel->save();
@@ -44,12 +44,12 @@ class MerchantService
 
     /**
      * 图片上传修改
-     * @param $image
-     * @return mixed
+     * @param Request $request
+     * @return string
      */
-    public function setPhoto($image)
+    public function setPhoto(Request $request)
     {
-            //$image = $request->input('avatar'); // image base64 encoded
+            $image = $request->input('photo'); // image base64 encoded
             $base  = preg_match("/data:image\/(.*?);/",$image,$image_extension); // extract the image extension
             $image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
             $image = str_replace(' ', '+', $image);

@@ -15,6 +15,7 @@ use \Illuminate\Support\Facades\Route;
 Route::middleware('cors')->group(function () {
 
     Route::post('merchant_info','Api\MerchantApi@addMerchant');//商家信息提交
+    Route::post('upload','Api\MerchantApi@setPhoto');//上传图片
 
 });
 
