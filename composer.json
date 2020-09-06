@@ -16,7 +16,8 @@
         "jacobcyl/ali-oss-storage": "^2.1",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "spatie/browsershot": "^3.34"
+        "spatie/browsershot": "^3.34",
+        "fruitcake/laravel-cors": "^2.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
