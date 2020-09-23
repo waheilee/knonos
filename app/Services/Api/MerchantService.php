@@ -77,13 +77,12 @@ class MerchantService
                 $result['msg'] = '文件格式不正确!';
                 return response()->json($result);
             }
-//
+            $pic = $file->getRealPath();
 //            $image = $file->store('images');
 //            $filepath = Storage::url($image);
             $imageName = 'photo'; //generating unique file name;
-            return $imageName;
             $disk      = Storage::disk('oss');
-            $path      = $disk->put($imageName,$file);
+            $path      = $disk->put($imageName,$pic);
             return $disk->url($path);
 //            $result['status'] = 1;
 //            $result['msg'] = '上传成功!';
