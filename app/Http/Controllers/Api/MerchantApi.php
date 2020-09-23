@@ -66,7 +66,7 @@ class MerchantApi extends Controller
 
     public function test(Request $request)
     {
-        return $request->input('pic');
+//        return $request->input('pic');
 //        try{
             $data = $this->merchantService->setPhoto($request);
             return $this->wrapSuccessReturn(compact('data'));
