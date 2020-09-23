@@ -80,7 +80,9 @@ class MerchantApi extends Controller
 
         $disk      = Storage::disk('public');
         $path      = $disk->put($imageName,base64_decode($image));
-        return $path;
+
+
+        return $disk->url($path);
 
 //        try{
             $data = $this->merchantService->setPhoto($request);
