@@ -63,9 +63,7 @@ class MerchantService
 //
 //            return 'http://yandu2019.oss-cn-beijing.aliyuncs.com/'.$imageName;
 
-        $new_file = 'photo';
-        $ans=Storage::disk('oss')->put($new_file, $file);
-        return $ans;
+
         $result = [
             'status' => 0,
             'msg' => '上传失败!',

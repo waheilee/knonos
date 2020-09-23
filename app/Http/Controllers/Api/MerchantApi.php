@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\Api\MerchantService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MerchantApi extends Controller
 {
@@ -69,7 +70,10 @@ class MerchantApi extends Controller
         $file = $request->input('pic');
         preg_match('/^(data:\s*image\/(\w+);base64,)/',$file,$res);
         $file=base64_decode(str_replace($res[1],'', $file));
-        return $file;
+        $new_file = 'photo';
+        $ans=Storage::disk('oss')->put($new_file, $file);
+        return $ans;
+
 //        try{
             $data = $this->merchantService->setPhoto($request);
             return $this->wrapSuccessReturn(compact('data'));
