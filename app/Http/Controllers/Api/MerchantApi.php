@@ -78,7 +78,7 @@ class MerchantApi extends Controller
         }
         $imageName = 'photo/'.date('Y-m-d') . uniqid() . '.' . $image_extension[1]; //generating unique file name;
 
-        $disk      = Storage::disk('public');
+        $disk      = Storage::disk('oss');
         $path      = $disk->put($imageName,base64_decode($image));
 
 
