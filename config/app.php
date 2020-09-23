@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Fruitcake\Cors\CorsServiceProvider::class,
+        Wtto\AliOSS\AliOssServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -174,7 +175,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Jacobcyl\AliOSS\AliOssServiceProvider::class,
+//        Jacobcyl\AliOSS\AliOssServiceProvider::class,
 
     ],
 

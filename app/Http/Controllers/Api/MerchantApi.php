@@ -3,6 +3,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Constants\ErrorMsgConstants;
+use App\Exceptions\ServiceException;
 use App\Http\Controllers\Controller;
 use App\Services\Api\MerchantService;
 use Illuminate\Http\Request;
@@ -67,12 +69,17 @@ class MerchantApi extends Controller
 
     public function test(Request $request)
     {
-        $file = $request->input('pic');
-        preg_match('/^(data:\s*image\/(\w+);base64,)/',$file,$res);
-        $file=base64_decode(str_replace($res[1],'', $file));
-        $new_file = 'photo';
-        $ans=Storage::disk('oss')->put($new_file, $file);
-        return $ans;
+        $image = $request->input('pic');
+        $base  = preg_match("/data:image\/(.*?);/",$image,$image_extension); // extract the image extension
+        $image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
+        $image = str_replace(' ', '+', $image);
+        if (!$base){
+            throw new ServiceException(ErrorMsgConstants::VALIDATION_DATA_ERROR,'上传的base64图片格式有误');
+        }
+        $imageName = 'photo/'.date('Y-m-d') . uniqid() . '.' . $image_extension[1]; //generating unique file name;
+        $disk      = Storage::disk('oss');
+        $path      = $disk->put($imageName,base64_decode($image));
+        return $path;
 
 //        try{
             $data = $this->merchantService->setPhoto($request);
