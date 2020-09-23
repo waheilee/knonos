@@ -64,7 +64,7 @@ class MerchantService
         preg_match('/^(data:\s*image\/(\w+);base64,)/',$file,$res);
         $file=base64_decode(str_replace($res[1],'', $file));
         $new_file = 'photo';
-        $ans=Storage::disk('user_img')->put($new_file, $file);
+        $ans=Storage::disk('oss')->put($new_file, $file);
         return $ans;
         $result = [
             'status' => 0,
