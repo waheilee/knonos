@@ -61,7 +61,6 @@ class MerchantService
 //            $path      = $disk->put($imageName,base64_decode($image));
 //
 //            return 'http://yandu2019.oss-cn-beijing.aliyuncs.com/'.$imageName;
-
         $result = [
             'status' => 0,
             'msg' => '上传失败!',
@@ -71,6 +70,7 @@ class MerchantService
         if($file->isValid()){
             $extension = $file->getClientOriginalExtension(); //上传文件的后缀.
             $filename = $file->getClientOriginalName();
+            return $extension;
 
             //验证后缀
             $allow_ext = ['jpg', 'png', 'jpeg', 'gif'];
