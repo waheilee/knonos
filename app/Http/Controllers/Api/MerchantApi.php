@@ -81,7 +81,7 @@ class MerchantApi extends Controller
         $disk      = Storage::disk('qiniu');
         $disk->put($imageName,base64_decode($image));
 
-        return env('QINIU_URL'.$imageName);
+        return env('QINIU_URL').$imageName;
 
 //        try{
             $data = $this->merchantService->setPhoto($request);
