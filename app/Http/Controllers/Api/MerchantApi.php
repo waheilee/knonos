@@ -63,4 +63,9 @@ class MerchantApi extends Controller
             return $this->wrapErrorReturn($exception);
         }
     }
+
+    public function test()
+    {
+        return true;
+    }
 }
