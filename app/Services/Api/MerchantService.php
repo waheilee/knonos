@@ -81,6 +81,7 @@ class MerchantService
 //            $image = $file->store('images');
 //            $filepath = Storage::url($image);
             $imageName = 'photo'; //generating unique file name;
+            return $imageName;
             $disk      = Storage::disk('oss');
             $path      = $disk->put($imageName,$file);
             return $disk->url($path);
