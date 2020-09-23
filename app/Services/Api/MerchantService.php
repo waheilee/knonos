@@ -78,11 +78,12 @@ class MerchantService
                 return response()->json($result);
             }
             $pic = $file->getRealPath();
-            return $pic;
+
 //            $image = $file->store('images');
 //            $filepath = Storage::url($image);
             $imageName = 'photo'; //generating unique file name;
             $disk      = Storage::disk('oss');
+            return $disk;
             $path      = $disk->put($imageName,$pic);
             return $disk->url($path);
 //            $result['status'] = 1;
