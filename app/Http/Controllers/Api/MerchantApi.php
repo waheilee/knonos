@@ -66,6 +66,6 @@ class MerchantApi extends Controller
 
     public function test()
     {
-        return true;
+        return 'success';
     }
 }
