@@ -78,6 +78,7 @@ class MerchantService
                 return response()->json($result);
             }
             $pic = $file->getRealPath();
+            return $pic;
 //            $image = $file->store('images');
 //            $filepath = Storage::url($image);
             $imageName = 'photo'; //generating unique file name;
