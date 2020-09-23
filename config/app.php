@@ -167,6 +167,7 @@ return [
          */
         Fruitcake\Cors\CorsServiceProvider::class,
         Wtto\AliOSS\AliOssServiceProvider::class,
+        zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
         /*
          * Application Service Providers...
          */

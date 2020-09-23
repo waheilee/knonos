@@ -18,7 +18,8 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "spatie/browsershot": "^3.34",
-        "wtto/ali-oss-storage": "^2.3"
+        "wtto/ali-oss-storage": "^2.3",
+        "zgldh/qiniu-laravel-storage": "^0.10.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
