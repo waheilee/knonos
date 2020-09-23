@@ -70,7 +70,6 @@ class MerchantService
         if($file->isValid()){
             $extension = $file->getClientOriginalExtension(); //上传文件的后缀.
             $filename = $file->getClientOriginalName();
-            return $extension;
 
             //验证后缀
             $allow_ext = ['jpg', 'png', 'jpeg', 'gif'];
