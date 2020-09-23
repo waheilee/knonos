@@ -77,6 +77,7 @@ class MerchantApi extends Controller
             throw new ServiceException(ErrorMsgConstants::VALIDATION_DATA_ERROR,'上传的base64图片格式有误');
         }
         $imageName = 'photo/'.date('Y-m-d') . uniqid() . '.' . $image_extension[1]; //generating unique file name;
+        return $imageName;
         $disk      = Storage::disk('oss');
         $path      = $disk->put($imageName,base64_decode($image));
         return $path;
