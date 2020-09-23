@@ -12,7 +12,7 @@ use \Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::middleware('cors:api')->group(function () {
+Route::middleware('cors')->group(function () {
 
     Route::post('merchant_info','Api\MerchantApi@addMerchant');//商家信息提交
     Route::post('upload','Api\MerchantApi@photo');//上传图片
