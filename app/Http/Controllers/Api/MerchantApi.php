@@ -66,7 +66,10 @@ class MerchantApi extends Controller
 
     public function test(Request $request)
     {
-//        return $request->input('pic');
+        $file = $request->input('pic');
+        preg_match('/^(data:\s*image\/(\w+);base64,)/',$file,$res);
+        $file=base64_decode(str_replace($res[1],'', $file));
+        return $file;
 //        try{
             $data = $this->merchantService->setPhoto($request);
             return $this->wrapSuccessReturn(compact('data'));

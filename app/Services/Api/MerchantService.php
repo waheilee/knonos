@@ -50,6 +50,7 @@ class MerchantService
     public function setPhoto(Request $request)
     {
             $file = $request->input('pic'); // image base64 encoded
+
 //            $base  = preg_match("/data:image\/(.*?);/",$image,$image_extension); // extract the image extension
 //            $image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
 //            $image = str_replace(' ', '+', $image);
@@ -61,9 +62,7 @@ class MerchantService
 //            $path      = $disk->put($imageName,base64_decode($image));
 //
 //            return 'http://yandu2019.oss-cn-beijing.aliyuncs.com/'.$imageName;
-        preg_match('/^(data:\s*image\/(\w+);base64,)/',$file,$res);
-        $file=base64_decode(str_replace($res[1],'', $file));
-        return $file;
+
         $new_file = 'photo';
         $ans=Storage::disk('oss')->put($new_file, $file);
         return $ans;
