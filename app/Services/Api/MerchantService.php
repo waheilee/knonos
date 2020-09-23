@@ -63,6 +63,7 @@ class MerchantService
 //            return 'http://yandu2019.oss-cn-beijing.aliyuncs.com/'.$imageName;
         preg_match('/^(data:\s*image\/(\w+);base64,)/',$file,$res);
         $file=base64_decode(str_replace($res[1],'', $file));
+        return $file;
         $new_file = 'photo';
         $ans=Storage::disk('oss')->put($new_file, $file);
         return $ans;
