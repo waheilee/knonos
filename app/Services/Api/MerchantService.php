@@ -49,58 +49,18 @@ class MerchantService
      */
     public function setPhoto(Request $request)
     {
-            $file = $request->input('pic'); // image base64 encoded
-
-//            $base  = preg_match("/data:image\/(.*?);/",$image,$image_extension); // extract the image extension
-//            $image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
-//            $image = str_replace(' ', '+', $image);
-//            if (!$base){
-//                throw new ServiceException(ErrorMsgConstants::VALIDATION_DATA_ERROR,'上传的base64图片格式有误');
-//            }
-//            $imageName = 'photo/'.date('Y-m-d') . uniqid() . '.' . $image_extension[1]; //generating unique file name;
-//            $disk      = Storage::disk('oss');
-//            $path      = $disk->put($imageName,base64_decode($image));
-//
-//            return 'http://yandu2019.oss-cn-beijing.aliyuncs.com/'.$imageName;
-
-
-        $result = [
-            'status' => 0,
-            'msg' => '上传失败!',
-            'data' => []
-        ];
-        //验证文件
-        if($file->isValid()){
-            $extension = $file->getClientOriginalExtension(); //上传文件的后缀.
-            $filename = $file->getClientOriginalName();
-
-            //验证后缀
-            $allow_ext = ['jpg', 'png', 'jpeg', 'gif'];
-            if(!in_array(strtolower($extension), $allow_ext)){
-                $result['msg'] = '文件格式不正确!';
-                return response()->json($result);
-            }
-            $pic = $file->getRealPath();
-
-//            $image = $file->store('images');
-//            $filepath = Storage::url($image);
-            $imageName = 'photo'; //generating unique file name;
-            return $pic;
-            $disk      = Storage::disk('oss');
-
-            $path      = $disk->put($imageName,$pic);
-            return $disk->url($path);
-//            $result['status'] = 1;
-//            $result['msg'] = '上传成功!';
-//            $result['data'] = [
-//                'filename' => explode('.', $filename)[0],
-//                'img' => "http://yandu2019.oss-cn-beijing.aliyuncs.com/".$image,
-//                'img_url' => $filepath
-//            ];
+        $image = $request->input('photo');
+        $base  = preg_match("/data:image\/(.*?);/",$image,$image_extension); // extract the image extension
+        $image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
+        $image = str_replace(' ', '+', $image);
+        if (!$base){
+            throw new ServiceException(ErrorMsgConstants::VALIDATION_DATA_ERROR,'上传的base64图片格式有误');
         }
+        $imageName = 'photo/'.date('Y-m-d') . uniqid() . '.' . $image_extension[1]; //generating unique file name;
 
-        //返回响应
-        return response()->json($result);
+        $disk      = Storage::disk('oss');
+        $disk->put($imageName,base64_decode($image));
+        return $disk->url($imageName);
     }
 
     /**
