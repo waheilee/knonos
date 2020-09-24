@@ -82,7 +82,7 @@ class MerchantApi extends Controller
         $path = $disk->put($imageName,base64_decode($image));
 
 //        return env('QINIU_URL').$imageName;
-        return $path;;
+        return $disk->url($imageName);;
 
 //        try{
             $data = $this->merchantService->setPhoto($request);
