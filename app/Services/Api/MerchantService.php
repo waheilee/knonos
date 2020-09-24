@@ -23,13 +23,13 @@ class MerchantService
         $merchantModel = new Merchant();
         $merchantModel->property        = $request->input('property');
         $merchantModel->cp_name         = $request->input('cp_name');
-        $merchantModel->cp_scale        = $request->input('cp_scale');
+        $merchantModel->cp_scale        = $request->input('cp_scale')?$request->input('cp_scale'):1;
         $merchantModel->introduce       = $request->input('introduce');
-        $merchantModel->business_number = $request->input('business_number');
+        $merchantModel->business_number = $request->input('business_number')?$request->input('business_number'):123456789;
         $merchantModel->legal_person    = $request->input('legal_person');
-        $merchantModel->legal_id_card   = $request->input('legal_id_card');
+        $merchantModel->legal_id_card   = $request->input('legal_id_card')?$request->input('legal_id_card'):123456789;
         $merchantModel->phone           = $request->input('phone');
-        $merchantModel->address         = $request->input('address');
+        $merchantModel->address         = $request->input('address')?$request->input('address'):'default address';
         $merchantModel->bank            = $request->input('bank');
         $merchantModel->bank_number     = $request->input('bank_number');
         $merchantModel->category        = $request->input('category');
