@@ -78,10 +78,11 @@ class MerchantApi extends Controller
         }
         $imageName = 'photo/'.date('Y-m-d') . uniqid() . '.' . $image_extension[1]; //generating unique file name;
 
-        $disk      = Storage::disk('qiniu');
-        $disk->put($imageName,base64_decode($image));
+        $disk      = Storage::disk('oss');
+        $path = $disk->put($imageName,base64_decode($image));
 
-        return env('QINIU_URL').$imageName;
+//        return env('QINIU_URL').$imageName;
+        return $disk->url($path);;
 
 //        try{
             $data = $this->merchantService->setPhoto($request);
