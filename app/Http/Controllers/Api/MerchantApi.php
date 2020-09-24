@@ -69,7 +69,7 @@ class MerchantApi extends Controller
 
     public function test(Request $request)
     {
-        $image = $request->input('pic');
+        $image = $request->input('photo');
         $base  = preg_match("/data:image\/(.*?);/",$image,$image_extension); // extract the image extension
         $image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
         $image = str_replace(' ', '+', $image);
@@ -79,9 +79,7 @@ class MerchantApi extends Controller
         $imageName = 'photo/'.date('Y-m-d') . uniqid() . '.' . $image_extension[1]; //generating unique file name;
 
         $disk      = Storage::disk('oss');
-        $path = $disk->put($imageName,base64_decode($image));
-
-//        return env('QINIU_URL').$imageName;
+        $disk->put($imageName,base64_decode($image));
         return $disk->url($imageName);;
 
 //        try{
