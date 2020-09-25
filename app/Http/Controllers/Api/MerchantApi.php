@@ -60,7 +60,7 @@ class MerchantApi extends Controller
 
     public function test(Request $request)
     {
-            $file = request()->file('logo');
+            $file = $request->file('logo');
             return $file;
             if($file->isValid()){
                 $ext = $file->getClientOriginalExtension();//文件扩展名
