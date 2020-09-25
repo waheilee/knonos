@@ -8,6 +8,7 @@ use App\Exceptions\ServiceException;
 use App\Http\Controllers\Controller;
 use App\Services\Api\MerchantService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class MerchantApi extends Controller
@@ -59,25 +60,25 @@ class MerchantApi extends Controller
 
     public function test(Request $request)
     {
-        return $request->all();
-        $image = $request->input('photo');
-        $base  = preg_match("/data:image\/(.*?);/",$image,$image_extension); // extract the image extension
-        $image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
-        $image = str_replace(' ', '+', $image);
-        if (!$base){
-            throw new ServiceException(ErrorMsgConstants::VALIDATION_DATA_ERROR,'上传的base64图片格式有误');
+        if(!empty($_FILES['logo'])){
+            Log::info($_FILES["logo"]["type"]."---".$_FILES["logo"]["name"]."---".$_FILES["logo"]["size"]);
+
+            $uploaddir = 'app/public/uploads/';
+            $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+            Log::info($uploadfile);
+            if (move_uploaded_file($_FILES['logo']['tmp_name'], storage_path($uploadfile))) {
+                Log::info( "File is valid, and was successfully uploaded.\n");
+            } else {
+                Log::info(  "Possible file upload attack!\n");
+            }
+
+
         }
-        $imageName = 'photo/'.date('Y-m-d') . uniqid() . '.' . $image_extension[1]; //generating unique file name;
 
-        $disk      = Storage::disk('oss');
-        $disk->put($imageName,base64_decode($image));
-        return $disk->url($imageName);;
 
-//        try{
-            $data = $this->merchantService->setPhoto($request);
-            return $this->wrapSuccessReturn(compact('data'));
-//        }catch (\Exception $exception){
-//            return $this->wrapErrorReturn($exception);
-//        }
+        $ret['err']     = 0;
+        $ret['msg']     = '成功';
+
+        return response()->json($ret);
     }
 }
