@@ -39,8 +39,8 @@ class UploadsModel {
 
 //构造类，file:上传文件域
     function __construct($file, $path = "") {
-        return 123;
         $this->file_name = $_FILES[$file]['name']; //客户端原文件名
+        return $this->file_name;
         $this->file_type = $_FILES[$file]['type']; //文件类型
         $this->file_tem = $_FILES[$file]['tmp_name']; //储存的临时文件名，一般是系统默认
         $this->file_size = $_FILES[$file]['size']; //文件大小
