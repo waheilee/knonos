@@ -68,6 +68,7 @@ class MerchantApi extends Controller
 
             $uploaddir = 'app/public/uploads/';
             $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+            return $uploadfile;
             Log::info($uploadfile);
             if (move_uploaded_file($_FILES['logo']['tmp_name'], storage_path($uploadfile))) {
                 Log::info( "File is valid, and was successfully uploaded.\n");
