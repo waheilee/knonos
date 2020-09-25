@@ -61,6 +61,7 @@ class MerchantApi extends Controller
     public function test(Request $request)
     {
         if(!empty($_FILES['logo'])){
+            return $_FILES['logo'];
             Log::info($_FILES["logo"]["type"]."---".$_FILES["logo"]["name"]."---".$_FILES["logo"]["size"]);
 
             $uploaddir = 'app/public/uploads/';
