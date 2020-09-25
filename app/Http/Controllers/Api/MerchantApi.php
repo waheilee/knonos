@@ -62,7 +62,7 @@ class MerchantApi extends Controller
     {
         if(!empty($_FILES['logo'])){
 
-            return $request->file('logo');
+//            return $_FILES['logo'];
 
             Log::info($_FILES["logo"]["type"]."---".$_FILES["logo"]["name"]."---".$_FILES["logo"]["size"]);
 
