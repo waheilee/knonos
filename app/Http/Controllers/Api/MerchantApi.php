@@ -59,6 +59,7 @@ class MerchantApi extends Controller
 
     public function test(Request $request)
     {
+        return $request->all();
         $image = $request->input('photo');
         $base  = preg_match("/data:image\/(.*?);/",$image,$image_extension); // extract the image extension
         $image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
