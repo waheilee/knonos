@@ -60,29 +60,26 @@ class MerchantApi extends Controller
 
     public function test(Request $request)
     {
-        if(!empty($_FILES['logo'])){
+            $file = request()->file('logo');
+            if($file->isValid()){
+                $ext = $file->getClientOriginalExtension();//文件扩展名
+                $file_name = date("YmdHis",time()).'-'.uniqid().".".$ext;//保存的文件名
+                if(!in_array($ext,['jpg','jpeg','gif','png']) ) return response()->json('文件类型不是图片');
+                //把临时文件移动到指定的位置，并重命名
+                $path = public_path().DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'wchat_img'.DIRECTORY_SEPARATOR.date('Y').DIRECTORY_SEPARATOR.date('m').DIRECTORY_SEPARATOR.date('d').DIRECTORY_SEPARATOR;
+                $bool =  $file->move($path,$file_name);
+                if($bool){
+                    $img_path = '/uploads/wchat_img/'.date('Y').'/'.date('m').'/'.date('d').'/'.$file_name;
+                    $data = [
+//                        'domain_img_path'=>get_domain().$img_path,
+                        'img_path'=>$img_path,
+                    ];
+                    return response()->json($data);
+                }else{
+                    return response()->json("图片上传失败！");
+                }
+            }else{
+                return response()->json("图片上传失败！");
 
-//            return $_FILES['logo'];
-
-            Log::info($_FILES["logo"]["type"]."---".$_FILES["logo"]["name"]."---".$_FILES["logo"]["size"]);
-
-            $uploaddir = 'app/public/uploads/';
-            $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
-            return $uploadfile;
-            Log::info($uploadfile);
-            if (move_uploaded_file($_FILES['logo']['tmp_name'], storage_path($uploadfile))) {
-                Log::info( "File is valid, and was successfully uploaded.\n");
-            } else {
-                Log::info(  "Possible file upload attack!\n");
-            }
-
-
-        }
-
-
-        $ret['err']     = 0;
-        $ret['msg']     = '成功';
-
-        return response()->json($ret);
     }
 }
