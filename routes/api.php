@@ -17,7 +17,7 @@ Route::middleware('cors')->group(function () {
     Route::post('merchant_info','Api\MerchantApi@addMerchant');//商家信息提交
     Route::any('upload','Api\MerchantApi@photo');//上传图片
     Route::any('upload/photo','Api\MerchantApi@photo');//上传图片
-    Route::any('test','Api\MerchantApi@test');//上传图片
+    Route::any('test','Api\TestController@upload');//上传图片
 
 });
 
