@@ -64,6 +64,6 @@ class MerchantApi extends Controller
 //        $file = $_FILES['logo'];
         $upload = new UploadsModel('logo', storage_path('app/public'));
 
-        return $upload->create_simg(100,100);
+        return $upload->upload();
     }
 }
