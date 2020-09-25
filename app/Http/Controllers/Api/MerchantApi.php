@@ -62,7 +62,7 @@ class MerchantApi extends Controller
     public function test(Request $request)
     {
 //        $file = $_FILES['logo'];
-        $upload = new UploadsModel('logo', "./uploads/goods");
+        $upload = new UploadsModel('logo', storage_path('app/public'));
 
         return $upload->create_simg(100,100);
     }
