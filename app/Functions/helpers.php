@@ -50,3 +50,10 @@ function getExceptionMainInfo(Exception $e)
         "Line"    => $e->getLine(),
     ];
 }
+
+//如果文件夹不存在则创建文件夹
+function creatFolder($f_path) {
+    if (!file_exists($f_path)) {
+        mkdir($f_path, 0777);
+    }
+}
