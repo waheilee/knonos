@@ -61,9 +61,10 @@ class MerchantApi extends Controller
 
     public function test()
     {
-        $file = $_FILES['logo'];
-        return $file;
-        $upload = new UploadsModel($file, "./uploads/goods");
+//        $file = $_FILES['logo'];
+        $upload = new UploadsModel('logo', "./uploads/goods");
+        return $upload;
+
         return $upload->upload();
     }
 }
