@@ -79,8 +79,8 @@ class MerchantApi extends Controller
                 }else{
                     return response()->json("图片上传失败！");
                 }
-            }else{
+            }else {
                 return response()->json("图片上传失败！");
-
+            }
     }
 }
